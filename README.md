@@ -21,6 +21,10 @@ Pay My Buddy provides the following features:
 ## Screenshots
 
 ![App Screenshot](https://user.oc-static.com/upload/2019/11/04/15728814356333_image1.png)
+![Register](./src/main/resources/static/images/register.png)
+![Login](./src/main/resources/static/images/login.png)
+![Contact](./src/main/resources/static/images/contact.png)
+![Transfer](./src/main/resources/static/images/transfer.png)
 
 
 ## Run Locally
