@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  			<form class="form-inline"
+				  method="post"
+                  th:action="@{/linkaccount}"
+                  role="form"
+                  th:object="${formObject}">
+		<div class="container">
+		    <div class="d-flex justify-content-between">
+		        <h3 > Link bank account </h3>			        
+		        <a href="/transfert?action=TOPUP" >
+		        	<button type="button" class="btn btn-primary mb-2">Top up/Top down</button>
+		        </a>
+		    </div>
+	    </div>	
+	    <div class="container">
+		    <div class="d-flex justify-content-center" id="container-form">
+			<div class="row align-items-center">  
+               	<div class="input-group col mx-3 my-5">
+                        <div class="input-group">
+					      <div class="input-group-prepend">
+					        <span class="input-group-text">
+					            <span class="fa fa-envelope"></span>
+					        </span>
+					      </div>                        
+                            <input type="text"
+                                   name="accountNumber"
+                                   class="form-control"
+                                   placeholder="Account number"
+                                   th:field="*{accountNumber}"
+                            />                                                       
+                           </div>                                                    
+                   </div>
+			       <p th:errors = "*{accountNumber}" class="text-danger col mx-3 my-5"
+			                 th:if="${#fields.hasErrors('accountNumber')}"></p>					     
+				  <div class="col mx-3 my-5" style="width:200px">
+				  	<button type="submit" class="btn button-title btn-block" >Link</button>
+				  </div>
+				</div>
+				
+		    </div>
+	    </div>
+	    </form>
+	    <br/>
+	    <div class="container">
+		    <div class="d-flex justify-content-start">
+		        <h3> My Linked accounts </h3>
+		    </div>
+	    </div>
+	    <div class="container">
+	    <div th:if="${tableData.size() > 0}">
+	    <table class="table table-striped table-bordered table-hover">
+	        <thead class="table-dark">
+	            <tr>
+	                <th>Bank</th>
+	                <th>Branch</th>
+	                <th>Account number</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="data: ${tableData}">
+	                <td th:text="${data.bank}"></td>
+	                <td th:text="${data.branch}"></td>
+	                <td th:text="${data.accountNumber}"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    </div>
+	    <div th:unless="${tableData.size() > 0}">
+	      <span>No data found!</span>
+	    </div>	
+
+	    <nav aria-label="Pagination" th:if="${totalPages > 0}">
+	      <ul class="pagination justify-content-center">
+	        <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+	          <a th:replace="fragments/paging :: paging(1, '<<', 'First Page')"></a>
+	        </li>
+	        <li class="page-item font-weight-bold" th:classappend="${currentPage == 1} ? 'disabled'">
+	          <a th:replace="fragments/paging :: paging(${currentPage - 1}, 'Prev', 'Previous Page')"></a>
+	        </li>
+	        <li class="page-item disabled" th:if="${currentPage - 2 > 1}">
+	          <a class="page-link" href="#">...</a>
+	        </li>
+	        <li class="page-item" th:classappend="${page == currentPage} ? 'active'"
+	          th:each="page : ${#numbers.sequence(currentPage > 2 ? currentPage - 2 : 1, currentPage + 2 < totalPages ? currentPage + 2 : totalPages)}">
+	          <a th:replace="fragments/paging :: paging(${page}, ${page}, 'Page ' + ${page})"></a>
+	        </li>
+	        <li class="page-item disabled" th:if="${currentPage + 2 < totalPages}">
+	          <a class="page-link" href="#">...</a>
+	        </li>
+	        <li class="page-item font-weight-bold" th:classappend="${currentPage == totalPages} ? 'disabled'">
+	          <a th:replace="fragments/paging :: paging(${currentPage + 1},'Next', 'Next Page')"></a>
+	        </li>
+	        <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+	          <a th:replace="fragments/paging :: paging(${totalPages}, '>>', 'Last Page')"></a>
+	        </li>
+	      </ul>
+	    </nav>	    
+	        
+	</div>
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

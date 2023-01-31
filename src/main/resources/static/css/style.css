@@ -1,0 +1,77 @@
+.navbar {
+  padding: 0 10px;
+}
+
+*.icon-dark {
+  color: grey;
+}
+
+.message {
+  position: absolute;
+  top: 40px;
+  right:5px;
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+  text-indent: 25px;
+  border: 2px solid #d6d4d4;
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 1px solid grey;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.search button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 80px;
+  background: grey;
+}
+
+#container-form {
+  height: 20%;
+  width: 100%;
+  background: rgba(246,246,246,255);
+}
+.container th{
+	background : rgba(92,185,92,255);
+}
+
+.navbar{
+	background :white;
+}
+#topNavbar a{
+	color :black;
+}
+
+#login-form-header{
+	width:50%;
+}
+#login-button{
+	width:50%;
+	height:10%
+}
+.button-title, .button-title:hover{
+	background : rgba(92,185,92,255);
+	color: white;
+	border: 0px;
+}
+.nav-link.active{
+	color:red;
+}
+.card-header{
+	background : rgba(92,185,92,255);
+	color: white;
+}

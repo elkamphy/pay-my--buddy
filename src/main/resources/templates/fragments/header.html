@@ -1,0 +1,61 @@
+<header th:fragment="header">
+  <nav class="navbar navbar-expand-md">
+    <a class="navbar-brand btn button-title"  role="button" th:href="@{/home}">
+      Pay My Buddy
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="topNavbar">
+      <ul class="navbar-nav" >
+        <li class="nav-item">
+          <a class="nav-link active" style="color:blue" th:href="@{/home}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Transfer
+	        </a>       
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" th:href="@{/transfer?action=PAY}">Payment</a>
+	          <a class="dropdown-item" th:href="@{/transfer?action=DEBIT}" th:if="${isAdmin}">Top up</a>
+	          <a class="dropdown-item" th:href="@{/transfer?action=CREDIT}" th:if="${isAdmin}">Top down</a>
+	          <a class="dropdown-item" th:href="@{/linked-accounts}">Linked accounts</a>
+	        </div>	         
+        </li>
+        <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Merchant
+	        </a>       
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" th:href="@{/transfer?action=CREDIT}">Cash in</a>
+	          <a class="dropdown-item" th:href="@{/transfer?action=DEBIT}">Cash out</a>
+	        </div>	         
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/profile}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/contact}">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/logout}">Log off</a>
+        </li>                        
+      </ul>
+    </div>  
+  </nav>
+  <!-- 
+  	<nav class="navbar navbar-light bg-light">
+		<div class="row align-items-center">
+		  <div class="col-md-auto"><button type="button" class=" btn btn-link">Home</button></div>
+		  <div class="col-md-auto"><button type="button" class=" btn btn-link">/</button></div>
+		  <div class="col"><span  th:text="${currentLink}"></span></div>
+		</div>  	
+	</nav>  -->
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+	    <li class="breadcrumb-item active" th:text="${currentLink}">Displays current page</li>
+	  </ol>
+	</nav>	
+</header>
